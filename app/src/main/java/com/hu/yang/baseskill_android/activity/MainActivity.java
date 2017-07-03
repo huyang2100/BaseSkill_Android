@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 
 import com.hu.yang.baseskill_android.R;
 import com.hu.yang.baseskill_android.fragment.AnimDownFragment;
+import com.hu.yang.baseskill_android.fragment.AnimListFragment;
 import com.hu.yang.baseskill_android.fragment.DBFragment;
 import com.hu.yang.baseskill_android.fragment.LoginFragment;
 import com.hu.yang.baseskill_android.fragment.XmlFragment;
@@ -47,6 +48,8 @@ public class MainActivity extends BaseActivity implements ItemFragment.OnItemCli
             replaceFragmentAddToBackStack(new AnimDownFragment());
         } else if ("db".equals(item)) {
             replaceFragmentAddToBackStack(new DBFragment());
+        }else if ("animlist".equals(item)) {
+            replaceFragmentAddToBackStack(new AnimListFragment());
         }
     }
 }

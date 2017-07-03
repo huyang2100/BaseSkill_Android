@@ -17,7 +17,7 @@ import com.hu.yang.baseskill_android.R;
 
 public class ItemFragment extends BaseFragment {
 
-    private String[] items = {"login", "xml","db","anim down"};
+    private String[] items = {"login", "xml","db","anim down","animlist"};
     private ListView mListView;
     private OnItemClickListener onItemClickListener;
 
