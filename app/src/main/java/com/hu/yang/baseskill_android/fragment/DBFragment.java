@@ -51,6 +51,11 @@ public class DBFragment extends BaseFragment {
                     return;
                 }
 
+                if(studentDao.findByName(name)){
+                    Toast.makeText(getActivity(), "the people is already exist!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 Student student = new Student();
                 String sex = "male";
                 if (!rb_male.isChecked()) {
@@ -63,22 +68,27 @@ public class DBFragment extends BaseFragment {
                 studentDao.addStudent(student);
                 Toast.makeText(getActivity(), "添加成功！", Toast.LENGTH_SHORT).show();
 
-                ArrayList<Student> studentList = studentDao.getAllStudent();
-                if (stuAdapter == null) {
-                    stuAdapter = new StuAdapter();
-                    stuAdapter.setList(studentList);
-                    lv.setAdapter(stuAdapter);
-                } else {
-                    stuAdapter.setList(studentList);
-                    stuAdapter.notifyDataSetChanged();
-                }
+                updateData();
             }
         });
+
 
         et_name = (EditText) view.findViewById(R.id.et_name);
         et_age = (EditText) view.findViewById(R.id.et_age);
         rb_male = (RadioButton) view.findViewById(R.id.rb_male);
         lv = (ListView) view.findViewById(R.id.lv);
+    }
+
+    private void updateData() {
+        ArrayList<Student> studentList = studentDao.getAllStudent();
+        if (stuAdapter == null) {
+            stuAdapter = new StuAdapter();
+            stuAdapter.setList(studentList);
+            lv.setAdapter(stuAdapter);
+        } else {
+            stuAdapter.setList(studentList);
+            stuAdapter.notifyDataSetChanged();
+        }
     }
 
     class StuAdapter extends BaseAdapter {
@@ -106,9 +116,17 @@ public class DBFragment extends BaseFragment {
                 convertView = View.inflate(getActivity(), R.layout.item_db, null);
             }
 
-            Student student = students.get(position);
+            final Student student = students.get(position);
             TextView tv = (TextView) convertView.findViewById(R.id.tv);
             tv.setText(student.toString());
+            convertView.findViewById(R.id.btn_del).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int i = studentDao.delByName(student.name);
+                    Toast.makeText(getActivity(), "del success! "+i, Toast.LENGTH_SHORT).show();
+                    updateData();
+                }
+            });
             return convertView;
         }
 
