@@ -5,10 +5,10 @@
              android:layout_height="match_parent">
 
     <LinearLayout
-        android:background="@color/colorAccent"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/show"
@@ -19,14 +19,28 @@
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/lv"
-        android:divider="#ddd"
-        android:dividerHeight="1dp"
-        android:visibility="gone"
+    <FrameLayout
+        android:id="@+id/fl_bg"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#8000"
+        android:visibility="gone">
 
-    </ListView>
+    </FrameLayout>
 
+    <FrameLayout
+        android:id="@+id/fl_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ListView
+            android:id="@+id/lv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="#ddd"
+            android:dividerHeight="1dp">
+
+        </ListView>
+    </FrameLayout>
 </FrameLayout>

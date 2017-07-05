@@ -5,19 +5,13 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.Animation;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hu.yang.baseskill_android.R;
 
@@ -32,7 +26,9 @@ public class AnimDownFragment extends BaseFragment {
     private static final long ANIM_DURATION = 500;
     private ListView mLv;
     private ArrayList<String> contentList = new ArrayList<>();
-    private View mRootView;
+    private View rootView;
+    private View mFl_lv;
+    private View mFl_bg;
 
     @Override
     protected void initData(Bundle savedInstanceState) {
@@ -47,7 +43,7 @@ public class AnimDownFragment extends BaseFragment {
         view.findViewById(R.id.show).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mLv.getVisibility() == View.GONE) {
+                if (mFl_lv.getVisibility() == View.GONE) {
                     showList();
                 } else {
                     hideList();
@@ -62,35 +58,50 @@ public class AnimDownFragment extends BaseFragment {
                 hideList();
             }
         });
-        mLv.setOnTouchListener(new View.OnTouchListener() {
+        rootView = view.findViewById(R.id.root_view);
+        rootView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
+            public void onClick(View v) {
                 hideList();
-                return false;
             }
         });
-        mRootView = view.findViewById(R.id.root_view);
+        mFl_lv = view.findViewById(R.id.fl_lv);
+        mFl_bg = view.findViewById(R.id.fl_bg);
     }
 
     private void showList() {
-        if (mLv.getVisibility() == View.GONE) {
-            mLv.setVisibility(View.VISIBLE);
-            ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(mLv, "translationY", -mRootView.getHeight(), 0);
+        if (mFl_lv.getVisibility() == View.GONE) {
+            mFl_lv.setVisibility(View.VISIBLE);
+            mFl_bg.setVisibility(View.VISIBLE);
+            ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(mFl_lv, "translationY", -rootView.getHeight(), 0);
             objectAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
             objectAnimator.setDuration(ANIM_DURATION).start();
+            objectAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    mFl_bg.setAlpha(animation.getAnimatedFraction());
+                }
+            });
         }
     }
 
     private void hideList() {
-        if (mLv.getTranslationY() == 0f) {
-            ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(mLv, "translationY", 0, -mRootView.getHeight()).setDuration(ANIM_DURATION);
+        if (mFl_lv.getTranslationY() == 0f) {
+            ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(mFl_lv, "translationY", 0, -rootView.getHeight()).setDuration(ANIM_DURATION);
             objectAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
             objectAnimator.start();
             objectAnimator.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     super.onAnimationEnd(animation);
-                    mLv.setVisibility(View.GONE);
+                    mFl_lv.setVisibility(View.GONE);
+                    mFl_bg.setVisibility(View.GONE);
+                }
+            });
+            objectAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    mFl_bg.setAlpha(1-animation.getAnimatedFraction());
                 }
             });
         }
