@@ -12,6 +12,7 @@ import com.hu.yang.baseskill_android.fragment.LoginFragment;
 import com.hu.yang.baseskill_android.fragment.WheelViewFragment;
 import com.hu.yang.baseskill_android.fragment.XmlFragment;
 import com.hu.yang.baseskill_android.fragment.ItemFragment;
+import com.hu.yang.baseskill_android.fragment.ZoomImageFragment;
 
 public class MainActivity extends BaseActivity implements ItemFragment.OnItemClickListener {
 
@@ -56,6 +57,8 @@ public class MainActivity extends BaseActivity implements ItemFragment.OnItemCli
             replaceFragmentAddToBackStack(new WheelViewFragment());
         }else if ("download".equals(item)) {
             replaceFragmentAddToBackStack(new DownloadFragment());
+        }else if ("zoomimage".equals(item)) {
+            replaceFragmentAddToBackStack(new ZoomImageFragment());
         }
     }
 }
