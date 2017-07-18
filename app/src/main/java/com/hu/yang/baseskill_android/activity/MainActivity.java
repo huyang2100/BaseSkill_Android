@@ -10,6 +10,7 @@ import com.hu.yang.baseskill_android.fragment.DBFragment;
 import com.hu.yang.baseskill_android.fragment.DownloadFragment;
 import com.hu.yang.baseskill_android.fragment.LoginFragment;
 import com.hu.yang.baseskill_android.fragment.SaveImageToGalleryFragment;
+import com.hu.yang.baseskill_android.fragment.SendMsgFragment;
 import com.hu.yang.baseskill_android.fragment.WheelViewFragment;
 import com.hu.yang.baseskill_android.fragment.XmlFragment;
 import com.hu.yang.baseskill_android.fragment.ItemFragment;
@@ -62,6 +63,8 @@ public class MainActivity extends BaseActivity implements ItemFragment.OnItemCli
             replaceFragmentAddToBackStack(new ZoomImageFragment());
         }else if ("saveimaegtogallery".equals(item)) {
             replaceFragmentAddToBackStack(new SaveImageToGalleryFragment());
+        }else if ("sendmsg".equals(item)) {
+            replaceFragmentAddToBackStack(new SendMsgFragment());
         }
     }
 }
