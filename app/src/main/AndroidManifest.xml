@@ -30,13 +30,18 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".activity.PhonePadActivity"/>
-        <service android:name=".service.MusicService"/>
+
         <receiver android:name=".receiver.BootReceiver">
             <intent-filter >
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
+
+
+        <service android:name=".service.MusicService"/>
+        <service android:name=".service.MoneyService"/>
+
+        <activity android:name=".activity.PhonePadActivity"/>
     </application>
 
 </manifest>
