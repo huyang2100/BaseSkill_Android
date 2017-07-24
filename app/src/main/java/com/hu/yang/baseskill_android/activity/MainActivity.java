@@ -6,9 +6,11 @@ import android.support.v4.app.Fragment;
 import com.hu.yang.baseskill_android.R;
 import com.hu.yang.baseskill_android.fragment.AnimDownFragment;
 import com.hu.yang.baseskill_android.fragment.AnimListFragment;
+import com.hu.yang.baseskill_android.fragment.BindServiceFragment;
 import com.hu.yang.baseskill_android.fragment.DBFragment;
 import com.hu.yang.baseskill_android.fragment.DownloadFragment;
 import com.hu.yang.baseskill_android.fragment.LoginFragment;
+import com.hu.yang.baseskill_android.fragment.MusicFragment;
 import com.hu.yang.baseskill_android.fragment.PhonePadFragment;
 import com.hu.yang.baseskill_android.fragment.SaveImageToGalleryFragment;
 import com.hu.yang.baseskill_android.fragment.SendMsgFragment;
@@ -18,6 +20,8 @@ import com.hu.yang.baseskill_android.fragment.ItemFragment;
 import com.hu.yang.baseskill_android.fragment.ZoomImageFragment;
 
 public class MainActivity extends BaseActivity implements ItemFragment.OnItemClickListener {
+
+    private MusicFragment musicFragment;
 
     @Override
     protected void initData(Bundle savedInstanceState) {
@@ -44,6 +48,7 @@ public class MainActivity extends BaseActivity implements ItemFragment.OnItemCli
         return R.layout.activity_fragment;
     }
 
+
     @Override
     public void onItemClick(String item) {
         if ("login".equals(item)) {
@@ -68,6 +73,10 @@ public class MainActivity extends BaseActivity implements ItemFragment.OnItemCli
             replaceFragmentAddToBackStack(new SendMsgFragment());
         }else if ("phone_pad".equals(item)) {
             replaceFragmentAddToBackStack(new PhonePadFragment());
+        }else if ("music".equals(item)) {
+            replaceFragmentAddToBackStack(new MusicFragment());
+        }else if ("bindservice".equals(item)) {
+            replaceFragmentAddToBackStack(new BindServiceFragment());
         }
     }
 }
