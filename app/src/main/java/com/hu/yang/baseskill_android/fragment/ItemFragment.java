@@ -17,7 +17,21 @@ import com.hu.yang.baseskill_android.R;
 
 public class ItemFragment extends BaseFragment {
 
-    private String[] items = {"login", "xml","db","anim down","animlist","wheelview","download","zoomimage","saveimaegtogallery","sendmsg","phone_pad","music","bindservice"};
+    private String[] items = {
+            "login",
+            "xml",
+            "db",
+            "anim down",
+            "animlist",
+            "wheelview",
+            "download",
+            "zoomimage",
+            "saveimaegtogallery",
+            "sendmsg",
+            "phone_pad",
+            "music",
+            "bindservice",
+            "recycleview"};
     private ListView mListView;
     private OnItemClickListener onItemClickListener;
 
@@ -36,7 +50,7 @@ public class ItemFragment extends BaseFragment {
         }
     }
 
-    public interface OnItemClickListener{
+    public interface OnItemClickListener {
         void onItemClick(String item);
     }
 
