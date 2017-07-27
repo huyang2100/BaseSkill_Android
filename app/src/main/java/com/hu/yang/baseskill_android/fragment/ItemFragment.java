@@ -31,7 +31,8 @@ public class ItemFragment extends BaseFragment {
             "phone_pad",
             "music",
             "bindservice",
-            "recycleview"};
+            "recycleview",
+            "sms"};
     private ListView mListView;
     private OnItemClickListener onItemClickListener;
 

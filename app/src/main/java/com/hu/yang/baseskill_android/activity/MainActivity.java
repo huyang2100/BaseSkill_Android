@@ -15,6 +15,7 @@ import com.hu.yang.baseskill_android.fragment.PhonePadFragment;
 import com.hu.yang.baseskill_android.fragment.RecycleViewFragment;
 import com.hu.yang.baseskill_android.fragment.SaveImageToGalleryFragment;
 import com.hu.yang.baseskill_android.fragment.SendMsgFragment;
+import com.hu.yang.baseskill_android.fragment.SmsFragment;
 import com.hu.yang.baseskill_android.fragment.WheelViewFragment;
 import com.hu.yang.baseskill_android.fragment.XmlFragment;
 import com.hu.yang.baseskill_android.fragment.ItemFragment;
@@ -80,6 +81,8 @@ public class MainActivity extends BaseActivity implements ItemFragment.OnItemCli
             replaceFragmentAddToBackStack(new BindServiceFragment());
         }else if ("recycleview".equals(item)) {
             replaceFragmentAddToBackStack(new RecycleViewFragment());
+        }else if ("sms".equals(item)) {
+            replaceFragmentAddToBackStack(new SmsFragment());
         }
     }
 }
